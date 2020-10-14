@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Header } from './components/header';
-//Unused import, but still availabe
+//Unused  Component import, but still availabe
 import { Footer } from './components/footer';
 import { Content } from './components/content';
 //Bootstrap to add Navbar
@@ -19,13 +19,13 @@ import { Create } from './components/create';
 class App extends Component {
   render() {
     return (
-      //Route diverts user to pages containing chosen components
-      //Navbar present on all pages navigates them all
+      //Navbar present on all pages to move through them all
       <Router>
         <div className="App">
           <Navbar bg="dark" variant="dark">
             <Navbar.Brand href="#home">Navbar</Navbar.Brand>
             <Nav className="mr-auto">
+              {/*Links to each Component Page */}
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/read">Read</Nav.Link>
               <Nav.Link href="/create">Create</Nav.Link>
@@ -35,6 +35,7 @@ class App extends Component {
 
           <br />
           <Switch>
+            {/*Route diverts user to pages containing chosen components in the Nav Links */}
             <Route path='/' component={Content} exact />
             <Route path='/create' component={Create} exact />
             <Route path='/read' component={Read} exact />
