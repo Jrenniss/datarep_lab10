@@ -1,6 +1,6 @@
 import React from 'react';
 
-//Header Component
+//Content Component
 export class Content extends React.Component {
     //Method to display what is within
     render() {

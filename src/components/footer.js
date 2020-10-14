@@ -1,6 +1,6 @@
 import React from 'react';
 
-//Header Component
+//Footer Component
 export class Footer extends React.Component{
     //Method to display what is within
     render(){

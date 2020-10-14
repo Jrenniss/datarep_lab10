@@ -1,6 +1,6 @@
 import React from 'react';
 
-//Header Component
+//Read Component
 export class Read extends React.Component {
     //Method to display what is within
     render() {
