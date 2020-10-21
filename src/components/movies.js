@@ -1,14 +1,13 @@
 import React from 'react';
+import { MovieItem } from './movieItem';
 
 //Movies Component
 export class Movies extends React.Component{
     //Method to display what is within
-    render(){
-        return(
-             //Contents on display in the Component
-            <div>
-                <h1>This is the Movies Component.</h1>
-            </div>
-        );
+    render(){//Breaks into a single movie item
+        return this.props.movies.map( (movie)=>{
+            //Return each Movie as a single item
+            return <MovieItem movie={movie}></MovieItem>
+        })
     }
 }

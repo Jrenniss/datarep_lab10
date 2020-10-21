@@ -4,8 +4,9 @@ import { Movies } from './movies';
 //Read Component
 export class Read extends React.Component {
 
-    //state object that holds data within it. Eg: movies.
+    //State object that holds data within it. Eg: movies.
     state = {
+        //JSON Script of Movies to be accessed through Movies and MovieItem Components
         movies: [
             {
                 "Title": "Avengers: Infinity War",
@@ -36,7 +37,9 @@ export class Read extends React.Component {
             //Contents on display in the Component
             <div>
                 <h1>This is the Read Component</h1>
-                <Movies></Movies>
+                <h3>Below is the Movies Component Displaying Different Movies</h3>
+                {/*Movies Component Diaplay */}
+                <Movies movies={this.state.movies}></Movies>
             </div>
         );
     }
