@@ -2,6 +2,8 @@ import React from 'react';
 
 //Read Component
 export class Read extends React.Component {
+
+    //state object that holds data within it
     //Method to display what is within
     render() {
         return (
