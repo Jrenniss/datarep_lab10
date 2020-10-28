@@ -20,7 +20,7 @@ export class Create extends React.Component {
             Poster: ''
         }
     }
-
+    
     //Updates the Title of the movie
     onChangeMovieTitle(e) {
         this.setState({
@@ -75,7 +75,7 @@ export class Create extends React.Component {
 
                 {/*Button Adding Form Contents to State */}
                 <div>
-                    <input type="submit" value="Add Movie"></input>
+                    <input type="submit" value="Add Movie" className="btn btn-primary"></input>
                 </div>
             </form>
 
