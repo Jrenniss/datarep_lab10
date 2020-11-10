@@ -15,12 +15,12 @@ export class Read extends React.Component {
     //Retrives info from the api
     componentDidMount(){
         //Axios implements a retrivel 
-        axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032')
+        axios.get('http://localhost:4000/api/movies')
         //Fufilled response = Holds the data retrived with axios - 
         .then(response =>{
             //updates the state object
             this.setState({
-                movies:response.data.Search
+                movies:response.data.movies
             })
         })
         //Exception Response = Log an error
