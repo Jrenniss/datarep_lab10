@@ -1,4 +1,5 @@
 import React from 'react';
+//Sendds Data to the Server
 import axios from 'axios';
 
 //Create Component
@@ -46,12 +47,14 @@ export class Create extends React.Component {
     handleSubmit(e) {
         alert("Movie Added" + this.state.Title + " " + this.state.Year + " " + this.state.Poster);
 
+        //Sends Title, Year and Poster to the BackEnd Server.js
         const newMovie = {
             title: this.state.Title,
             year: this.state.Year,
             poster: this.state.Poster
         }
 
+        //Sends Data(newMovie) to BackEnd - http://localhost:4000/api/movies
         axios.post('http://localhost:4000/api/movies', newMovie)
         .then((res)=>{
             console.log(res);

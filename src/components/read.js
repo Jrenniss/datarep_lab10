@@ -14,7 +14,7 @@ export class Read extends React.Component {
 
     //Retrives info from the api
     componentDidMount(){
-        //Axios implements a retrivel 
+        //Axios implements a retrivel form BackEnd Server
         axios.get('http://localhost:4000/api/movies')
         //Fufilled response = Holds the data retrived with axios - 
         .then(response =>{

@@ -1,10 +1,15 @@
 const express = require('express')
 const app = express()
-const port = 4000
+//Change of Port Number = BackEnd Server 
+const port = 4000 
 
+//Addition of CORS - Cross-Origin-Request-Server
 const cors = require('cors');
+
+//Returns Data from the Server to the Client
 const bodyParser = require("body-parser");
 
+//Allows Corss-Origin Requests from Client(Localhost:3000) to Server(Localhost:4000)
 app.use(cors());
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -23,13 +28,15 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+//Route to Server Main Page - http://localhost:4000/
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-
+//Route to API Movies - http://localhost:4000/api/movies
 app.get('/api/movies', (req, res) => {
-
+    
+    //JSON Data
     const mymovies = [
         {
             "Title": "Avengers: Infinity War",
@@ -60,12 +67,15 @@ app.get('/api/movies', (req, res) => {
             "Poster": "https://m.media-amazon.com/images/M/MV5BNDUyODAzNDI1Nl5BMl5BanBnXkFtZTcwMDA2NDAzMw@@._V1_SX300.jpg"
         }
     ];
+
+    //Returns JSON and Success Message
     res.status(200).json({
         message: "Everything is Successful",
         movies: mymovies
     });
 })
 
+//Console Log of http://localhost:4000/api/movies = Movie Details added in http://localhost:3000/create
 app.post('/api/movies', (req, res) => {
     console.log('Movie Recieved');
     console.log(req.body.title);
@@ -74,6 +84,7 @@ app.post('/api/movies', (req, res) => {
 
 })
 
+//Server Setup
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
