@@ -30,6 +30,17 @@ app.use(bodyParser.json())
 const myConnectionString = 'mongodb+srv://admin:653396@cluster0.ejbwb.mongodb.net/movies?retryWrites=true&w=majority';
 mongoose.connect(myConnectionString, {useNewUrlParser: true});
 
+const Schema = mongoose.Schema;
+
+var movieSchema = new Schema({
+    title:String,
+    year:String,
+    poster:String
+});
+
+var MovieModel = mongoose.model("movie", movieSchema);
+
+
 //Route to Server Main Page - http://localhost:4000/
 app.get('/', (req, res) => {
     res.send('Hello World!')
