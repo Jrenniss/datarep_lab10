@@ -2,12 +2,12 @@ const express = require('express')
 const app = express()
 //Change of Port Number = BackEnd Server 
 const port = 4000 
-
 //Addition of CORS - Cross-Origin-Request-Server
 const cors = require('cors');
-
 //Returns Data from the Server to the Client
 const bodyParser = require("body-parser");
+//Addition of Mongoose
+const mongoose = require('mongoose');
 
 //Allows Corss-Origin Requests from Client(Localhost:3000) to Server(Localhost:4000)
 app.use(cors());
@@ -19,14 +19,16 @@ app.use(function (req, res, next) {
     next();
 });
 
-
-
 //Used for any Request on the Server
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
+
+//Connection to MongoDB server
+const myConnectionString = 'mongodb+srv://admin:653396@cluster0.ejbwb.mongodb.net/movies?retryWrites=true&w=majority';
+mongoose.connect(myConnectionString, {useNewUrlParser: true});
 
 //Route to Server Main Page - http://localhost:4000/
 app.get('/', (req, res) => {
