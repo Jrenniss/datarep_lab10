@@ -93,6 +93,14 @@ app.get('/api/movies', (req, res) => {
     // });
 })
 
+app.get('/api/movies/:id', (req, res)=>{
+    console.log(req.params.id);
+
+    MovieModel.findById(req.params.id, (err, data)=>{
+        res.json(data);
+    })
+})
+
 //Console Log of http://localhost:4000/api/movies = Movie Details added in http://localhost:3000/create
 app.post('/api/movies', (req, res) => {
     console.log('Movie Recieved');
