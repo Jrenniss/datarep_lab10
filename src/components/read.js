@@ -20,7 +20,7 @@ export class Read extends React.Component {
         .then(response =>{
             //updates the state object
             this.setState({
-                movies:response.data.movies
+                movies: response.data
             })
         })
         //Exception Response = Log an error

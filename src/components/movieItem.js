@@ -12,12 +12,12 @@ export class MovieItem extends React.Component {
                 {/*The content of each movieitem is desplayed as requested, Title, Year and Poster */}
                 <Card>
                     {/*Card Holds Title in the Card Header. Year and Poster are held in the Card Body  */}
-                    <Card.Header>{this.props.movie.Title}</Card.Header>
+                    <Card.Header>{this.props.movie.title}</Card.Header>
                     <Card.Body>
                         <blockquote className="blockquote mb-0">
-                            <img src={this.props.movie.Poster} width="200" height="200"></img>
+                            <img src={this.props.movie.poster} width="200" height="200"></img>
                             <footer className="blockquote-footer">
-                                <h4>{this.props.movie.Year}</h4>
+                                <h4>{this.props.movie.year}</h4>
                             </footer>
                         </blockquote>
                     </Card.Body>
