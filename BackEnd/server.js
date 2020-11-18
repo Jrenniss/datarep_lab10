@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 //Change of Port Number = BackEnd Server 
-const port = 4000 
+const port = 4000
 //Addition of CORS - Cross-Origin-Request-Server
 const cors = require('cors');
 //Returns Data from the Server to the Client
@@ -26,16 +26,17 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-//Connection to MongoDB server
+//Connection to MongoDB server with user and password
 const myConnectionString = 'mongodb+srv://admin:653396@cluster0.ejbwb.mongodb.net/movies?retryWrites=true&w=majority';
-mongoose.connect(myConnectionString, {useNewUrlParser: true});
+mongoose.connect(myConnectionString, { useNewUrlParser: true });
 
+//Defining Schema 
 const Schema = mongoose.Schema;
-
+//Mongoose Schema Field SetUp
 var movieSchema = new Schema({
-    title:String,
-    year:String,
-    poster:String
+    title: String,
+    year: String,
+    poster: String
 });
 
 var MovieModel = mongoose.model("movie", movieSchema);
@@ -48,7 +49,7 @@ app.get('/', (req, res) => {
 
 //Route to API Movies - http://localhost:4000/api/movies
 app.get('/api/movies', (req, res) => {
-    
+
     //JSON Data
     // const mymovies = [
     //     {
@@ -81,8 +82,8 @@ app.get('/api/movies', (req, res) => {
     //     }
     // ];
 
-    //Returns the contents of the Mongo DB
-    MovieModel.find((err, data)=>{
+    //Returns the contents of the Movies in Mongo DB Server
+    MovieModel.find((err, data) => {
         res.json(data);
     })
 
@@ -93,10 +94,12 @@ app.get('/api/movies', (req, res) => {
     // });
 })
 
-app.get('/api/movies/:id', (req, res)=>{
+//http://localhost:4000/api/movies/:id (eg: 5fb3b569bf9ca46d6c4c3dd4)
+app.get('/api/movies/:id', (req, res) => {
     console.log(req.params.id);
 
-    MovieModel.findById(req.params.id, (err, data)=>{
+    //Search for Documents and Returns it in JSON Format
+    MovieModel.findById(req.params.id, (err, data) => {
         res.json(data);
     })
 })
@@ -108,10 +111,11 @@ app.post('/api/movies', (req, res) => {
     console.log(req.body.year);
     console.log(req.body.poster);
 
+    //Created info to be added to Mongo DB Server, Name and Value Pairs
     MovieModel.create({
-        title:req.body.title,
-        year:req.body.year,
-        poster:req.body.poster
+        title: req.body.title,
+        year: req.body.year,
+        poster: req.body.poster
     })
 
     res.send('Item Added');
