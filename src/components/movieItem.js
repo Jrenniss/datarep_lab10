@@ -1,9 +1,33 @@
 import React from 'react';
 //Bootstrap import for the Card.
 import Card from 'react-bootstrap/Card';
+//Bootstrap import for the Button
+import Button from 'react-bootstrap/Button';
+//Importing Axois
+import axois from 'axios';
 
 //MovieItem Component
 export class MovieItem extends React.Component {
+
+    constructor(){
+        super();
+
+        this.DeleteMovie = this.DeleteMovie.bind(this);
+    }
+
+    //Delete Function
+    DeleteMovie(e){
+        //Stops Method getting Called on Load
+        e.preventDefault();
+        //Shows delete in the Console
+        console.log("Delete: "+this.props.movie._id);
+
+        //Deletes the movie from the server
+        axois.delete("http://localhost:4000/api/movies/"+this.props.movie._id)
+        .then()
+        .catch();
+    }
+
     //Method to display what is within
     render() {
         return (
@@ -21,6 +45,7 @@ export class MovieItem extends React.Component {
                             </footer>
                         </blockquote>
                     </Card.Body>
+                    <Button variant="danger" onClick={this.DeleteMovie}>Delete</Button>
                 </Card>
             </div>
         );

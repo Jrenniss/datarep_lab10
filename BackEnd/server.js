@@ -104,6 +104,16 @@ app.get('/api/movies/:id', (req, res) => {
     })
 })
 
+//Adding a Delete Function 
+app.delete('/api/movies/:id', (req, res)=>{
+    console.log("Delete Movie: "+req.params.id);
+
+    //Finds Record to then Delete
+    MovieModel.findByIdAndDelete(req.params.id, (err, data)=>{
+        res.send(data);
+    })
+})
+
 //Console Log of http://localhost:4000/api/movies = Movie Details added in http://localhost:3000/create
 app.post('/api/movies', (req, res) => {
     console.log('Movie Recieved');
