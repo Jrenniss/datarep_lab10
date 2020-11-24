@@ -22,9 +22,11 @@ export class MovieItem extends React.Component {
         //Shows delete in the Console
         console.log("Delete: "+this.props.movie._id);
 
-        //Deletes the movie from the server
+        //Deletes Movie from the Server and Reloads Page
         axois.delete("http://localhost:4000/api/movies/"+this.props.movie._id)
-        .then()
+        .then(()=>{
+            this.props.ReloadData();
+        })
         .catch();
     }
 
