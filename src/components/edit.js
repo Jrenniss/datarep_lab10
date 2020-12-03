@@ -2,7 +2,7 @@ import React from 'react';
 //Sendds Data to the Server
 import axios from 'axios';
 
-//Create Component
+//Edit Component
 export class Edit extends React.Component {
 
     //
@@ -23,6 +23,25 @@ export class Edit extends React.Component {
         }
     }
     
+    //Pull Movie ID from the URL
+    componentDidMount(){
+        console.log(this.props.match.params.id);
+
+        //Fills in Fields with Current Information
+        axios.get('http://localhost:4000/api/movies/'+this.props.match.params.id)
+        .then(response =>{
+            this.setState({
+                _id:response.data._id,
+                Title:response.data.title,
+                Year:response.data.year,
+                Poster:response.data.poster
+            })
+        })
+        .catch((error)=>{
+            console.log(error);
+        });
+    }
+
     //Updates the Title of the movie
     onChangeMovieTitle(e) {
         this.setState({
@@ -51,47 +70,55 @@ export class Edit extends React.Component {
         const newMovie = {
             title: this.state.Title,
             year: this.state.Year,
-            poster: this.state.Poster
+            poster: this.state.Poster,
+            _id:this.state._id
         }
 
-        //Sends Data(newMovie) to BackEnd - http://localhost:4000/api/movies
-        axios.post('http://localhost:4000/api/movies', newMovie)
-        .then((res)=>{
-            console.log(res);
+        //Sends the data to thhe BackEnd with upadtes made
+        axios.put('http://localhost:4000/api/movies/'+this.state._id, newMovie)
+        .then(res =>{
+            console.log(res.data)
         })
-        .catch((err)=>{
-            console.log(err);
-        });
+        .catch();
+
+        //Sends Data(newMovie) to BackEnd - http://localhost:4000/api/movies
+        // axios.post('http://localhost:4000/api/movies', newMovie)
+        // .then((res)=>{
+        //     console.log(res);
+        // })
+        // .catch((err)=>{
+        //     console.log(err);
+        // });
     }
 
     //Method to display what is within
     render() {
         return (
             //Contents on display in the Component
-            //Form to Add a Movie
+            //Form to Edit a Movie
             <form onSubmit={this.handleSubmit}>
-                {/*Adding Movie Title */}
+                {/*Edit Movie Title */}
                 <div className="form-group">
-                    <label>Please Add Movie Title:</label>
+                    <label>Updates Movie Title:</label>
                     <input type="text" className="form-control" value={this.state.Title} onChange={this.onChangeMovieTitle}>
                     </input>
                 </div>
 
-                {/*Adding Movie Year */}
+                {/*Edit Movie Year */}
                 <div className="form-group">
-                    <label>Please Add Movie Year:</label>
+                    <label>Update Movie Year:</label>
                     <input type="text" className="form-control" value={this.state.Year} onChange={this.onChangeMovieYear}>
                     </input>
                 </div>
 
-                {/*Adding Movie Poster */}
+                {/*Edit Movie Poster */}
                 <div className="form-group">
-                    <label>Please Add Movie Poster:</label>
+                    <label>Update Movie Poster:</label>
                     <textarea type="text" className="form-control" value={this.state.Poster} onChange={this.onChangeMoviePoster}>
                     </textarea>
                 </div>
 
-                {/*Button Adding Form Contents to State */}
+                {/*Button Updating Form Contents to State */}
                 <div>
                     <input type="submit" value="Edit Movie" className="btn btn-primary"></input>
                 </div>

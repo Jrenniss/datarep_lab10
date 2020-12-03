@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 //Importing Axois
 import axois from 'axios';
-
+//Imported to change the URL and pass ID of current work
 import {Link} from 'react-router-dom';
 
 
@@ -50,7 +50,9 @@ export class MovieItem extends React.Component {
                             </footer>
                         </blockquote>
                     </Card.Body>
+                    {/*Button to Delete Record*/}
                     <Button variant="danger" onClick={this.DeleteMovie}>Delete</Button>
+                    {/*Button to Upadte Record*/}
                     <Link to={"/edit/"+ this.props.movie._id} className="btn btn-primary">Edit</Link>
                 </Card>
             </div>

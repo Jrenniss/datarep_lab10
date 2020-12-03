@@ -104,6 +104,18 @@ app.get('/api/movies/:id', (req, res) => {
     })
 })
 
+//http://localhost:4000/api/movies/:id - Pulls ID from URL and Updates Record
+app.put('/api/movies/:id', (req, res)=>{
+    console.log("Update Movie: "+req.params.id);
+    console.log(req.body);
+
+    MovieModel.findByIdAndUpdate(req.params.id, req.body, {new:true},
+        (err,data)=>{
+            res.send(data);
+        })
+
+
+})
 //Adding a Delete Function 
 app.delete('/api/movies/:id', (req, res)=>{
     console.log("Delete Movie: "+req.params.id);
