@@ -14,6 +14,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Read } from './components/read';
 import { Create } from './components/create';
+import { Edit } from './components/edit';
 
 //Change from function to class
 class App extends Component {
@@ -40,6 +41,7 @@ class App extends Component {
             <Route path='/create' component={Create} exact />
             <Route path='/read' component={Read} exact />
             <Route path='/header' component={Header} exact />
+            <Route path='/edit/:id' component={Edit}></Route>
           </Switch>
         </div>
       </Router>
