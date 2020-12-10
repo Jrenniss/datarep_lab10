@@ -6,8 +6,9 @@ const port = 4000
 const cors = require('cors');
 //Returns Data from the Server to the Client
 const bodyParser = require("body-parser");
-//Addition of Mongoose
+//Addition of Mongoose 
 const mongoose = require('mongoose');
+//Addition of Path 
 const path = require('path');
 
 //Allows Corss-Origin Requests from Client(Localhost:3000) to Server(Localhost:4000)
