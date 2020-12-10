@@ -8,6 +8,7 @@ const cors = require('cors');
 const bodyParser = require("body-parser");
 //Addition of Mongoose
 const mongoose = require('mongoose');
+const path = require('path');
 
 //Allows Corss-Origin Requests from Client(Localhost:3000) to Server(Localhost:4000)
 app.use(cors());
@@ -18,6 +19,10 @@ app.use(function (req, res, next) {
         "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+
+//Config to find path to important files
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static(path.join(__dirname, '../build//static')));
 
 //Used for any Request on the Server
 // parse application/x-www-form-urlencoded
@@ -141,6 +146,11 @@ app.post('/api/movies', (req, res) => {
     })
 
     res.send('Item Added');
+})
+
+//Will return build/index.html on any other request then what is requested above
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname+'/../build/index.html'));
 })
 
 //Server Setup
